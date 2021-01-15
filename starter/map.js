@@ -363,3 +363,129 @@ console.log(strings);
 movements.sort((a, b) => a - b);
 console.log(movements);
 //!
+
+
+//TODO:  sortirovka viborom grokaem 
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[min]) min = j;
+        }
+        let temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
+
+let testArray = [1, 5, 6, 8, 2, 4, 9, 0, 3, 7];
+
+console.log(selectionSort(testArray));
+//------------------------------------------------------
+
+
+//TODO: rekursija 
+
+function recursion(value) {
+    console.log(value);
+    if (value) {
+        value--;
+        recursion(value);   //! sama sebja zapuskaet poka ne vernetsja false.
+    }
+    return 'Выход из рекурсии';
+}
+
+console.log(recursion(10));
+
+//TODO: Bistraja sort 
+let testArray11 = [1, 4, 7, 8, 0, 2, 5, 6, 9, 10, 3];
+
+function quickSort(arr) {
+    if (arr.length <= 1) return arr;
+    let index = Math.floor(arr.length / 2);
+    let pivot = arr[index];
+    let less = [];
+    let greater = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] <= pivot && i !== index) {
+            less.push(arr[i])
+        }
+        if (arr[i] > pivot && i !== index) {
+            greater.push(arr[i])
+        }
+    }
+    return quickSort(less).concat(pivot, quickSort(greater));
+}
+
+console.log(quickSort(testArray11));
+
+
+
+//!
+//!
+//!          Array create ! 
+
+console.log([1, 2, 3, 4, 5, 6, 7]);       //(7) [0, 1, 2, 3, 4, 5, 6, 7]
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));  // (7) [1, 2, 3, 4, 5, 6, 7]
+
+const x = new Array(7);
+console.log(x);         // [empty × 7]
+
+//x.fill(1);
+//console.log(x);       // [1, 1, 1, 1, 1, 1, 1]
+x.fill(1, 3);  //! 1 arg = то что будет за цифра, 2 arg = с какой начать , 3 arg = где закончить. 
+console.log(x);       // (7) [empty × 3, 1, 1, 1, 1]
+
+//И снова он изменит исходный, и вы увидите, что мы поставили эти 23 в этих двух положениях. Итак, с четырех до шести.
+
+const arr23 = [1, 2, 3, 4, 5, 6];
+
+arr23.fill(23, 4, 6);
+console.log(arr23); //[1, 2, 3, 4, 23, 23]
+
+//TODO: The BEST variant
+
+const y = Array.from({ length: 7 }, () => 1);    //! Создаем массив с (7) [1, 1, 1, 1, 1, 1, 1]
+console.log(y);
+//-----------------------
+const z = Array.from({ length: 7 }, (cur, i) => i + 1);  // Или ( _ , i) => i + 1
+
+console.log(z);  //(7) [1, 2, 3, 4, 5, 6, 7] 
+
+// Теперь эта функция Array.from ()  изначально был введен в JavaScript
+// для создания массивов из структур, подобных массиву.
+// Итак, помните, как я раньше говорил о так называемых Iterables,
+// такие вещи, как строки, карты или наборы,
+// все они являются итерациями в JavaScript.
+// И поэтому их можно преобразовать в реальные массивы используя Array.from().
+// И это причина также названия функции, потому что мы можем создавать массивы из других вещей.
+//!-----------------------------
+
+// labelBalance.addEventListener('click', function () {
+//     const movementsUI = Array.from(
+//       document.querySelectorAll('.movements__value'),
+//       el => Number(el.textContent.replace('€', ''))
+//     );
+//     console.log(movementsUI);
+
+//     const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+//   });
+
+// Итак, снова и когда мы щелкаем здесь, мы действительно получаем все числа что у нас здесь.
+// Итак, подведем итоги. Мы использовали Array.from () для создания массива из
+// результат querySelectorAll () который является NodeList, который на самом деле не является массивом,
+// но массив как структура и этот массив как структура можно легко преобразовать в массив
+// используя Array.from ().А затем в качестве второго шага мы даже включили функцию отображения,
+// который затем формирует этот исходный массив в массив именно так, как мы этого хотим.
+// Итак, в основном преобразование необработанного элемента в его текстовое содержимое
+
+
+//! REDUCE ! 
+const redStr = ["f", "f", "e", "a", "b"];
+const numReduc = [1, 2, 5, 8, 7];
+
+console.log(numReduc.reduce((acc, i) => acc + i));
+console.log(redStr.reduce((acc, i) => acc + i));
+
+
